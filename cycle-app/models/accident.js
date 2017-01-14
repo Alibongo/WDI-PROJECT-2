@@ -4,8 +4,8 @@ const accidentSchema = mongoose.Schema({
   datetime: String,
   severity: String,
   latitude: String,
-  longitude: String,
-  location: String
+  lat: String,
+  lng: String
 });
 
 module.exports = mongoose.model('Accident', accidentSchema);

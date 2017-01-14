@@ -26,15 +26,13 @@ App.createMap = function() {
 
   App.map = new google.maps.Map(canvas, mapOptions);
   this.getAccidents();
-
 };
-// https://api.cyclestreets.net/v2/collisions.locations?bbox=-0.1535583,51.257618,0.270538,51.704906&casualtiesinclude=cyclist&limit=3&datetime=friendly&jitter=1&zoom=17&key=1a427e08203905dd
+App.getAccidents = function() {
+  $.get('https://api.cyclestreets.net/v2/collisions.locations?bbox=-0.1535583,51.257618,0.270538,51.704906&casualtiesinclude=cyclist&limit=3&datetime=friendly&jitter=1&zoom=17&key=1a427e08203905dd').done( data => {
+    this.loopThroughArray(data);
+  });
+};
 
-App.getAccidents = function(){
-  $.get('https://api.cyclestreets.net/v2/collisions.locations?bbox=-0.1535583,51.257618,0.270538,51.704906&casualtiesinclude=cyclist&limit=3&datetime=friendly&jitter=1&zoom=17&key=1a427e08203905dd').done =>{
-    const accidents = data.filter(collisions = severity.category === 'slight');
-  }
-}
 
 App.loggedInState = function(){
   $('.loggedIn').show();

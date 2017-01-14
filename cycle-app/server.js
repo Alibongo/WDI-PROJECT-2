@@ -4,6 +4,7 @@ const morgan     = require('morgan');
 const bodyParser = require('body-parser');
 const cors       = require('cors');
 const mongoose   = require('mongoose');
+//const port     = process.env.PORT || 3000;
 
 //authentification
 const app        = express();
@@ -12,6 +13,15 @@ const apiRouter     = require('./config/apiRoutes');
 const webRouter     = require('./config/webRoutes');
 
 mongoose.connect(config.db);
+
+// **************OVER THINKING ALERT!!!!!****************
+//********CHECK WHERE THIS GOES AND HOW IT RELATES WITH MONGOOSE.CONNECT(CONFIG.DB)!!!!!!!!!!!!!!****************
+//**********SEE MARKED OUT PORT VARIABLE AT TOP***********
+// const databaseURL = process.env.MONGOLAB_URL || 'mongodb://localhost:27017/gymap';
+// mongoose.connect(databaseURL);
+//****SEE THAT THE LISTEN EXECUTION IS DIFFERENT ALSO*****
+
+
 
 app.use(morgan('dev'));
 app.use(express.static(`${__dirname}/public`));
