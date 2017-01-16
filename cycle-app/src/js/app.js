@@ -29,6 +29,11 @@ App.createMap = function() {
     zoom: 14,
     center: new google.maps.LatLng(51.506178, -0.088369),
     mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles: [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"visibility":"simplified"},{"saturation":"-100"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"lightness":"20"}]},{"featureType":"landscape","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"geometry.fill","stylers":[{"lightness":"-10"}]},{"featureType":"landscape.natural.landcover","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural.terrain","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"lightness":"-20"}]},{"featureType":"road","elementType":"labels.text","stylers":[{"lightness":"-65"},{"gamma":"1"},{"weight":"1"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"lightness":"100"},{"visibility":"on"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"lightness":"46"},{"visibility":"on"}]},{"featureType":"road.highway","elementType":"labels.text","stylers":[{"visibility":"simplified"},{"lightness":"46"}]},{"featureType":"road.highway","elementType":"labels.text.fill","stylers":[{"gamma":"1"},{"lightness":"6"}]},{"featureType":"road.highway","elementType":"labels.icon","stylers":[{"visibility":"off"},{"lightness":"61"}]},{"featureType":"road.arterial","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"road.arterial","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"lightness":"38"}]},{"featureType":"road.arterial","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"lightness":"60"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"road.local","elementType":"labels.text","stylers":[{"lightness":"30"}]},{"featureType":"road.local","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"lightness":"30"}]},{"featureType":"road.local","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"lightness":"60"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.station","elementType":"labels.icon","stylers":[{"visibility":"simplified"},{"saturation":"-100"}]},{"featureType":"transit.station.airport","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.station.bus","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit.station.rail","elementType":"labels.text","stylers":[{"visibility":"on"}]},{"featureType":"transit.station.rail","elementType":"labels.icon","stylers":[{"visibility":"on"},{"saturation":"-100"},{"lightness":"0"},{"gamma":"0.50"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#46bcec"},{"visibility":"on"}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"saturation":"-100"}]},{"featureType":"water","elementType":"labels.text","stylers":[{"lightness":"100"},{"weight":"0.38"}]}],
+
+
+
+
     mapTypeControl: false,
     zoomControl: true,
     zoomControlOptions: {
@@ -77,15 +82,28 @@ App.getAccidents = function() {
 // });
 
 
+// App.loopThroughArray = function(data){
+//   console.log(data);
+//   console.log(data);
+//   // console.log('inside loop through array');
+//   $.each(data, (index, feature)=>{
+//     App.addMarkerForAccident(feature);
+//     // console.log(feature);
+//   });
+// };
+
 App.loopThroughArray = function(data){
   console.log(data);
   console.log(data);
   // console.log('inside loop through array');
-  $.each(data, (index, feature)=>{
-    App.addMarkerForAccident(feature);
+  App.markers = data.map((feature, index) => {
+    return App.addMarkerForAccident(feature);
     // console.log(feature);
   });
+  const markerCluster = new MarkerClusterer(App.map, App.markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 };
+
 
 //icon details
 App.addMarkerForAccident = function(feature){
@@ -97,6 +115,7 @@ App.addMarkerForAccident = function(feature){
     //add icon styles details later.
   });
   App.addInfoWindowForAccident(feature, marker);
+  return marker;
 };
 //add info window for accident
 App.addInfoWindowForAccident = function(feature, marker) {
