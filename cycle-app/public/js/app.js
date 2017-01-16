@@ -29,7 +29,17 @@ App.createMap = function () {
   var mapOptions = {
     zoom: 14,
     center: new google.maps.LatLng(51.506178, -0.088369),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeControl: false,
+    zoomControl: true,
+    zoomControlOptions: {
+      position: google.maps.ControlPosition.LEFT_CENTER
+    },
+    scaleControl: true,
+    streetViewControl: true,
+    streetViewControlOptions: {
+      position: google.maps.ControlPosition.LEFT_TOP
+    }
   };
   App.map = new google.maps.Map(canvas, mapOptions);
   this.getAccidents();
@@ -98,7 +108,7 @@ App.addInfoWindowForAccident = function (feature, marker) {
     if (typeof _this2.infoWindow !== 'undefined') _this2.infoWindow.close();
     // <img src=${ features.image } can be added to div>
     _this2.infoWindow = new google.maps.InfoWindow({
-      content: '\n      <div class="info-window">\n      <p><strong>Severity:</strong> ' + feature.properties.severity + '</p>\n      </div>\n      '
+      content: '\n      <div class="info-window">\n      <p><strong>Severity:</strong> ' + feature.properties.severity + '</p>\n      <p><strong>time of day:</strong> ' + feature.properties.datetime + '</p>\n      </div>\n      '
     });
     _this2.infoWindow.open(_this2.map, marker);
   });
