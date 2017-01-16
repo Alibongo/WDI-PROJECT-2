@@ -1,5 +1,10 @@
 const App = App || {};
-const google = google || {};
+const google = google;
+
+// const google = google || {};
+//*******TO CHECK******
+//IF BOTH APP AND GOOGLE MAP ARE OKAY TO BE OBJECTS - WHAT
+//AFFECTS WILL HAPPEN IF SO????
 
 App.init = function() {
   this.apiUrl = 'http://localhost:3000/api';
@@ -15,40 +20,104 @@ App.init = function() {
     this.loggedOutState();
   }
 };
-
+//Check the zoom on this later. Eventually try UK wide etc.
 App.createMap = function() {
+  console.log('inside createMap');
   const canvas = document.getElementById('canvas');
   const mapOptions = {
     zoom: 14,
     center: new google.maps.LatLng(51.506178, -0.088369),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
-
   App.map = new google.maps.Map(canvas, mapOptions);
   this.getAccidents();
 };
+//check the loop - how to change when user mines deeper for info.
 App.getAccidents = function() {
-  $.get('https://api.cyclestreets.net/v2/collisions.locations?bbox=-0.1535583,51.257618,0.270538,51.704906&casualtiesinclude=cyclist&limit=3&datetime=friendly&jitter=1&zoom=17&key=1a427e08203905dd').done( data => {
-    this.loopThroughArray(data);
+  $.get('https://api.cyclestreets.net/v2/collisions.locations?bbox=-0.2259202,51.4911908,0.270538,51.704906&casualtiesinclude=cyclist&limit=3&datetime=friendly&jitter=1&zoom=17&key=1a427e08203905dd').done(data => {
+    const filteredData = data.features.filter(accident => {
+      return accident.properties.severity === 'serious' && 'fatal';
+    });
+    this.loopThroughArray(filteredData);
   });
 };
 
+// $get('https://api.cyclestreets.net/v2/collisions.locations?bbox=-0.1535583,51.257618,0.270538,51.704906&casualtiesinclude=cyclist&limit=3&datetime=friendly&jitter=1&zoom=17&key=1a427e08203905dd').done (data =>{
+//   for (var i = 0; i < data.length; i++) {
+//       let Accident ={
+//         datetime: data[i].datetime,
+//         severity: data[i].severity,
+//         Number_of_Vehicles: data[i].Number_of_Vehicles,
+//         lat: data[i].lat,
+//         lng: data[i].lng
+//       };
+//   }
+// });
 
+// request(data => {
+//   const accidents = data.features;
+//   accidents  .each((index, accident) => {
+//     let accidentHERE = accident.properties;
+//     accidentHERE.latitude = parseFloat(accidentHERE.latitude);
+//     Accident.save(accident, (err, accident) => {
+//
+//     })
+//   })
+// });
+
+
+App.loopThroughArray = function(data){
+  console.log(data);
+  console.log(data);
+  // console.log('inside loop through array');
+  $.each(data, (index, feature)=>{
+    App.addMarkerForAccident(feature);
+    // console.log(feature);
+  });
+};
+
+//icon details
+App.addMarkerForAccident = function(feature){
+  const latlng = new
+  google.maps.LatLng(parseFloat(feature.properties.latitude), parseFloat(feature.properties.longitude));
+  const marker = new google.maps.Marker({
+    position: latlng,
+    map: App.map
+    //add icon styles details later.
+  });
+  App.addInfoWindowForAccident(feature, marker);
+};
+//add info window for accident
+App.addInfoWindowForAccident = function(feature, marker) {
+  google.maps.event.addListener(marker, 'click', () =>{
+    if (typeof this.infoWindow !== 'undefined')
+      this. infoWindow.close();
+// <img src=${ features.image } can be added to div>
+    this.infoWindow = new google.maps.InfoWindow({
+      content: `
+      <div class="info-window">
+      <p><strong>Severity:</strong> ${ feature.properties.severity}</p>
+      </div>
+      `
+    });
+    this.infoWindow.open(this.map, marker);
+  });
+};
 App.loggedInState = function(){
+  console.log('inside app.loggedInState');
   $('.loggedIn').show();
   $('.loggedOut').hide();
   this.$main.html(`
     <div id="canvas"></div>
     `);
-  this.createMap();
+  console.log('this', this);
+  this.createMap.call(this); //.call equivalent to invoking
 };
-
 App.loggedOutState = function(){
   $('.loggedIn').hide();
   $('.loggedOut').show();
   this.register();
 };
-
 App.register = function(e){
   if (e) e.preventDefault();
   this.$main.html(`
@@ -70,7 +139,6 @@ App.register = function(e){
       </form>
       `);
 };
-
 App.login = function(e) {
   e.preventDefault();
   this.$main.html(`
@@ -86,24 +154,23 @@ App.login = function(e) {
         </form>
         `);
 };
-
 App.logout = function(e){
   e.preventDefault();
   this.removeToken();
   this.loggedOutState();
 };
-
 App.homepage = function(){
   console.log('shabba!');
 };
-
 App.handleForm = function(e){
+  console.log('submitted');
   e.preventDefault();
   const url    = `${App.apiUrl}${$(this).attr('action')}`;
   const method = $(this).attr('method');
   const data   = $(this).serialize();
   return App.ajaxRequest(url, method, data, data => {
     if (data.token) App.setToken(data.token);
+    console.log('app.loggedInState should run');
     App.loggedInState();
   });
 };
