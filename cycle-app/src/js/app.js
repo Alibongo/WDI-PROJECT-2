@@ -21,6 +21,11 @@ App.init = function() {
     this.loggedOutState();
   }
 };
+App.homepage = function(){
+  $('header h1').hide();
+  this.$main.html(`<p>hello<p>`);
+};
+
 //Check the zoom on this later. Eventually try UK wide etc.
 App.createMap = function() {
   console.log('inside createMap');
@@ -102,22 +107,22 @@ App.loopThroughArray = function(data){
 
   const mcOptions = {styles: [{
     height: 53,
-    url: '/images/m1-01.png',
+    url: '/images/m1.png',
     width: 53
   },
   {
     height: 56,
-    url: '/images/m4-01.png',
+    url: '/images/m2.png',
     width: 56
   },
   {
     height: 66,
-    url: '/images/m4-01.png',
+    url: '/images/m3.png',
     width: 66
   },
   {
     height: 78,
-    url: '/images/m1-01.png',
+    url: '/images/m5.png',
     width: 78
   },
   {
@@ -165,15 +170,15 @@ App.loggedInState = function(){
   this.$main.html(`
     <div id="canvas"></div>
     `);
-    console.log('this', this);
-    this.createMap.call(this); //.call equivalent to invoking
-  };
-  App.loggedOutState = function(){
-    $('.loggedIn').hide();
-    $('.loggedOut').show();
-    this.register();
-  };
-  App.register = function(e){
+  console.log('this', this);
+  this.createMap(); //.call equivalent to invoking
+};
+App.loggedOutState = function(){
+  $('.loggedIn').hide();
+  $('.loggedOut').show();
+  this.register();
+};
+App.register = function(e){
     if (e) e.preventDefault();
     this.$main.html(`
       <h2>Register</h2>
