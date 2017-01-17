@@ -29,11 +29,7 @@ App.createMap = function() {
     zoom: 14,
     center: new google.maps.LatLng(51.506178, -0.088369),
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    styles: [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"visibility":"simplified"},{"saturation":"-100"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"lightness":"20"}]},{"featureType":"landscape","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"geometry.fill","stylers":[{"lightness":"-10"}]},{"featureType":"landscape.natural.landcover","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural.terrain","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"lightness":"-20"}]},{"featureType":"road","elementType":"labels.text","stylers":[{"lightness":"-65"},{"gamma":"1"},{"weight":"1"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"lightness":"100"},{"visibility":"on"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"lightness":"46"},{"visibility":"on"}]},{"featureType":"road.highway","elementType":"labels.text","stylers":[{"visibility":"simplified"},{"lightness":"46"}]},{"featureType":"road.highway","elementType":"labels.text.fill","stylers":[{"gamma":"1"},{"lightness":"6"}]},{"featureType":"road.highway","elementType":"labels.icon","stylers":[{"visibility":"off"},{"lightness":"61"}]},{"featureType":"road.arterial","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"road.arterial","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"lightness":"38"}]},{"featureType":"road.arterial","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"lightness":"60"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"road.local","elementType":"labels.text","stylers":[{"lightness":"30"}]},{"featureType":"road.local","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"lightness":"30"}]},{"featureType":"road.local","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"lightness":"60"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.station","elementType":"labels.icon","stylers":[{"visibility":"simplified"},{"saturation":"-100"}]},{"featureType":"transit.station.airport","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.station.bus","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit.station.rail","elementType":"labels.text","stylers":[{"visibility":"on"}]},{"featureType":"transit.station.rail","elementType":"labels.icon","stylers":[{"visibility":"on"},{"saturation":"-100"},{"lightness":"0"},{"gamma":"0.50"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#46bcec"},{"visibility":"on"}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"saturation":"-100"}]},{"featureType":"water","elementType":"labels.text","stylers":[{"lightness":"100"},{"weight":"0.38"}]}],
-
-
-
-
+    styles: [{'featureType':'administrative','elementType':'all','stylers':[{'visibility':'off'}]},{'featureType':'administrative','elementType':'labels.text.fill','stylers':[{'color':'#444444'}]},{'featureType':'landscape','elementType':'all','stylers':[{'visibility':'simplified'},{'saturation':'-100'}]},{'featureType':'landscape','elementType':'geometry.fill','stylers':[{'lightness':20}]},{'featureType':'landscape','elementType':'labels.text','stylers':[{'visibility':'off'}]},{'featureType':'landscape','elementType':'labels.icon','stylers':[{'visibility':'off'}]},{'featureType':'landscape.man_made','elementType':'geometry.fill','stylers':[{'lightness':'-10'}]},{'featureType':'landscape.natural.landcover','elementType':'all','stylers':[{'visibility':'off'}]},{'featureType':'landscape.natural.terrain','elementType':'all','stylers':[{'visibility':'off'}]},{'featureType':'poi','elementType':'all','stylers':[{'visibility':'off'}]},{'featureType':'road','elementType':'all','stylers':[{'saturation':-100},{'lightness':45}]},{'featureType':'road','elementType':'geometry.stroke','stylers':[{'lightness':'-20'}]},{'featureType':'road','elementType':'labels.text','stylers':[{'lightness':'-65'},{'gamma':'1'},{'weight':'1'}]},{'featureType':'road.highway','elementType':'all','stylers':[{'visibility':'simplified'}]},{'featureType':'road.highway','elementType':'geometry.fill','stylers':[{'lightness':'100'},{'visibility':'on'}]},{'featureType':'road.highway','elementType':'geometry.stroke','stylers':[{'lightness':'46'},{'visibility':'on'}]},{'featureType':'road.highway','elementType':'labels.text','stylers':[{'visibility':'simplified'},{'lightness':'46'}]},{'featureType':'road.highway','elementType':'labels.text.fill','stylers':[{'gamma':'1'},{'lightness':'6'}]},{'featureType':'road.highway','elementType':'labels.icon','stylers':[{'visibility':'off'},{'lightness':'61'}]},{'featureType':'road.arterial','elementType':'all','stylers':[{'visibility':'on'}]},{'featureType':'road.arterial','elementType':'labels.text.fill','stylers':[{'visibility':'on'},{'lightness':'38'}]},{'featureType':'road.arterial','elementType':'labels.text.stroke','stylers':[{'visibility':'on'},{'lightness':'60'}]},{'featureType':'road.arterial','elementType':'labels.icon','stylers':[{'visibility':'off'}]},{'featureType':'road.local','elementType':'labels.text','stylers':[{'lightness':'30'}]},{'featureType':'road.local','elementType':'labels.text.fill','stylers':[{'visibility':'on'},{'lightness':'30'}]},{'featureType':'road.local','elementType':'labels.text.stroke','stylers':[{'visibility':'on'},{'lightness':'60'}]},{'featureType':'transit','elementType':'all','stylers':[{'visibility':'off'}]},{'featureType':'transit.line','elementType':'all','stylers':[{'visibility':'off'}]},{'featureType':'transit.station','elementType':'labels.icon','stylers':[{'visibility':'simplified'},{'saturation':'-100'}]},{'featureType':'transit.station.airport','elementType':'all','stylers':[{'visibility':'off'}]},{'featureType':'transit.station.bus','elementType':'labels.icon','stylers':[{'visibility':'off'}]},{'featureType':'transit.station.rail','elementType':'labels.text','stylers':[{'visibility':'on'}]},{'featureType':'transit.station.rail','elementType':'labels.icon','stylers':[{'visibility':'on'},{'saturation':'-100'},{'lightness':'0'},{'gamma':'0.50'}]},{'featureType':'water','elementType':'all','stylers':[{'color':'#46bcec'},{'visibility':'on'}]},{'featureType':'water','elementType':'geometry.fill','stylers':[{'saturation':'-100'}]},{'featureType':'water','elementType':'labels.text','stylers':[{'lightness':'100'},{'weight':'0.38'}]}],
     mapTypeControl: false,
     zoomControl: true,
     zoomControlOptions: {
@@ -44,15 +40,18 @@ App.createMap = function() {
     streetViewControlOptions: {
       position: google.maps.ControlPosition.LEFT_TOP
     }
+
   };
   App.map = new google.maps.Map(canvas, mapOptions);
   this.getAccidents();
 };
+
+
 //check the loop - how to change when user mines deeper for info.
 App.getAccidents = function() {
-  $.get('https://api.cyclestreets.net/v2/collisions.locations?bbox=-0.2259202,51.4911908,0.270538,51.704906&casualtiesinclude=cyclist&limit=3&datetime=friendly&jitter=1&zoom=17&key=1a427e08203905dd').done(data => {
+  $.get('https://api.cyclestreets.net/v2/collisions.locations?bbox=-0.5103,51.2868,0.3340,51.6923&casualtiesinclude=cyclist&limit=3&datetime=friendly&jitter=1&zoom=17&key=1a427e08203905dd').done(data => {
     const filteredData = data.features.filter(accident => {
-      return accident.properties.severity === 'serious' && 'fatal';
+      return accident.properties.severity === 'serious';
     });
     this.loopThroughArray(filteredData);
   });
@@ -100,10 +99,35 @@ App.loopThroughArray = function(data){
     return App.addMarkerForAccident(feature);
     // console.log(feature);
   });
-  const markerCluster = new MarkerClusterer(App.map, App.markers,
-            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-};
 
+  const mcOptions = {styles: [{
+    height: 53,
+    url: '/images/m1-01.png',
+    width: 53
+  },
+  {
+    height: 56,
+    url: '/images/m4-01.png',
+    width: 56
+  },
+  {
+    height: 66,
+    url: '/images/m4-01.png',
+    width: 66
+  },
+  {
+    height: 78,
+    url: '/images/m1-01.png',
+    width: 78
+  },
+  {
+    height: 90,
+    url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+    width: 90
+  }]}
+
+  const markerCluster = new MarkerClusterer(App.map, App.markers, mcOptions);
+};
 
 //icon details
 App.addMarkerForAccident = function(feature){
@@ -121,8 +145,8 @@ App.addMarkerForAccident = function(feature){
 App.addInfoWindowForAccident = function(feature, marker) {
   google.maps.event.addListener(marker, 'click', () =>{
     if (typeof this.infoWindow !== 'undefined')
-      this. infoWindow.close();
-// <img src=${ features.image } can be added to div>
+    this. infoWindow.close();
+    // <img src=${ features.image } can be added to div>
     this.infoWindow = new google.maps.InfoWindow({
       content: `
       <div class="info-window">
@@ -141,17 +165,17 @@ App.loggedInState = function(){
   this.$main.html(`
     <div id="canvas"></div>
     `);
-  console.log('this', this);
-  this.createMap.call(this); //.call equivalent to invoking
-};
-App.loggedOutState = function(){
-  $('.loggedIn').hide();
-  $('.loggedOut').show();
-  this.register();
-};
-App.register = function(e){
-  if (e) e.preventDefault();
-  this.$main.html(`
+    console.log('this', this);
+    this.createMap.call(this); //.call equivalent to invoking
+  };
+  App.loggedOutState = function(){
+    $('.loggedIn').hide();
+    $('.loggedOut').show();
+    this.register();
+  };
+  App.register = function(e){
+    if (e) e.preventDefault();
+    this.$main.html(`
       <h2>Register</h2>
       <form method="post" action="/register">
       <div class="form-group">
@@ -169,10 +193,10 @@ App.register = function(e){
       <input class="btn btn-primary" type="submit" value="Register">
       </form>
       `);
-};
-App.login = function(e) {
-  e.preventDefault();
-  this.$main.html(`
+    };
+    App.login = function(e) {
+      e.preventDefault();
+      this.$main.html(`
         <h2>Login</h2>
         <form method="post" action="/login">
         <div class="form-group">
@@ -184,49 +208,49 @@ App.login = function(e) {
         <input class="btn btn-primary" type="submit" value="Login">
         </form>
         `);
-};
-App.logout = function(e){
-  e.preventDefault();
-  this.removeToken();
-  this.loggedOutState();
-};
-App.homepage = function(){
-  console.log('shabba!');
-};
-App.handleForm = function(e){
-  console.log('submitted');
-  e.preventDefault();
-  const url    = `${App.apiUrl}${$(this).attr('action')}`;
-  const method = $(this).attr('method');
-  const data   = $(this).serialize();
-  return App.ajaxRequest(url, method, data, data => {
-    if (data.token) App.setToken(data.token);
-    console.log('app.loggedInState should run');
-    App.loggedInState();
-  });
-};
-App.ajaxRequest = function(url, method, data, callback){
-  return $.ajax({
-    url,
-    method,
-    data,
-    beforeSend: this.setRequestHeader.bind(this)
-  })
+      };
+      App.logout = function(e){
+        e.preventDefault();
+        this.removeToken();
+        this.loggedOutState();
+      };
+      App.homepage = function(){
+        console.log('shabba!');
+      };
+      App.handleForm = function(e){
+        console.log('submitted');
+        e.preventDefault();
+        const url    = `${App.apiUrl}${$(this).attr('action')}`;
+        const method = $(this).attr('method');
+        const data   = $(this).serialize();
+        return App.ajaxRequest(url, method, data, data => {
+          if (data.token) App.setToken(data.token);
+          console.log('app.loggedInState should run');
+          App.loggedInState();
+        });
+      };
+      App.ajaxRequest = function(url, method, data, callback){
+        return $.ajax({
+          url,
+          method,
+          data,
+          beforeSend: this.setRequestHeader.bind(this)
+        })
         .done(callback)
         .fail(data => {
           console.log(data);
         });
-};
-App.setRequestHeader = function(xhr) {
-  return xhr.setRequestHeader('Authorization', `Bearer ${this.getToken()}`);
-};
-App.setToken = function(token){
-  return window.localStorage.setItem('token', token);
-};
-App.getToken = function(){
-  return window.localStorage.getItem('token');
-};
-App.removeToken = function(){
-  return window.localStorage.clear();
-};
-$(App.init.bind(App));
+      };
+      App.setRequestHeader = function(xhr) {
+        return xhr.setRequestHeader('Authorization', `Bearer ${this.getToken()}`);
+      };
+      App.setToken = function(token){
+        return window.localStorage.setItem('token', token);
+      };
+      App.getToken = function(){
+        return window.localStorage.getItem('token');
+      };
+      App.removeToken = function(){
+        return window.localStorage.clear();
+      };
+      $(App.init.bind(App));
