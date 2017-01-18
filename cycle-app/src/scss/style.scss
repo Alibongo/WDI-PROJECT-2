@@ -3,7 +3,25 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.navbar {
+line-height: 2;
+}
 
+img{
+float: left;
+width: 75%;
+}
+
+.gm-style {
+    font-weight: 300;
+    font-size: 17px;
+    overflow: hidden;
+    width: 200px;
+}
+  p{
+    max-width: 200px;
+    margin: 0 auto;
+  }
 
 #canvas {
  width: 100%;
