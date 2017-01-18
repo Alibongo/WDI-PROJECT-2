@@ -2,7 +2,7 @@ const App = App || {};
 const google = google;
 
 App.init = function() {
-  this.apiUrl = 'https://cycle-app.herokuapp.com/api';
+  this.apiUrl = 'http://localhost:3000/api';
   this.$main  = $('main');
   $('.register').on('click', this.register.bind(this));
   $('.login').on('click', this.login.bind(this));
