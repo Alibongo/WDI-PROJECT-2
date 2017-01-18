@@ -168,7 +168,7 @@ App.logout = function (e) {
 };
 
 App.homepage = function () {
-  this.$main.html('\n\n<div class="jumbotron jumbotron-fluid">\n<div class="container">\n<h1 class="display-3">Cycle Safe</h1>\n<div class="holder">\n<div id="boxOne" class="box fade-in one">\n<img src= "../images/circles_large-01.png"/>\n</div>\n\n<div id="boxTwo" class="box fade-in two">\n<img src= "../images/circles_large-02.png"/>\n</div>\n\n<div id="boxThree" class="box fade-in three">\n<img src= "../images/circles_large-03.png"/>\n</div>\n\n</div>\n</div>\n<p id="intro" class="lead">Mapping the cycling accident hotspots in London.</p>\n</div>\n</div>\n\n\n\n\n\n\n');
+  this.$main.html('\n\n<div class="jumbotron jumbotron-fluid">\n<div class="container">\n<h1 class="display-3">Cycle Safe</h1>\n<div class="holder">\n<div id="boxOne" class="box fade-in one">\n<img src= "../images/circles_large-01.png"/>\n</div>\n\n<div id="boxTwo" class="box fade-in two">\n<img src= "../images/circles_large-02.png"/>\n</div>\n\n<div id="boxThree" class="box fade-in three">\n<img src= "../images/circles_large-03.png"/>\n</div>\n\n</div>\n</div>\n<p id="intro" class="lead"> Mapping the cycling accident hotspots in London.</p>\n</div>\n</div>\n\n\n\n\n\n\n');
 };
 
 App.handleForm = function (e) {

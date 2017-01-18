@@ -259,7 +259,7 @@ App.homepage = function(){
 
 </div>
 </div>
-<p id="intro" class="lead">Mapping the cycling accident hotspots in London.</p>
+<p id="intro" class="lead"> Mapping the cycling accident hotspots in London.</p>
 </div>
 </div>
 
