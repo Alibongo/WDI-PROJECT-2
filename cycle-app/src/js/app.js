@@ -1,12 +1,6 @@
 const App = App || {};
 const google = google;
 
-
-// const google = google || {};
-//*******TO CHECK******
-//IF BOTH APP AND GOOGLE MAP ARE OKAY TO BE OBJECTS - WHAT
-//AFFECTS WILL HAPPEN IF SO????
-
 App.init = function() {
   this.apiUrl = 'http://localhost:3000/api';
   this.$main  = $('main');
@@ -27,7 +21,6 @@ App.homepage = function(){
   this.$main.html(`<p>hello<p>`);
 };
 
-//Check the zoom on this later. Eventually try UK wide etc.
 App.createMap = function() {
   console.log('inside createMap');
   const canvas = document.getElementById('canvas');
@@ -52,8 +45,6 @@ App.createMap = function() {
   this.getAccidents();
 };
 
-
-//check the loop - how to change when user mines deeper for info.
 App.getAccidents = function() {
   $.get('https://api.cyclestreets.net/v2/collisions.locations?bbox=-0.5103,51.2868,0.3340,51.6923&casualtiesinclude=cyclist&limit=3&datetime=friendly&jitter=1&zoom=17&key=1a427e08203905dd').done(data => {
     const filteredData = data.features.filter(accident => {
@@ -62,24 +53,6 @@ App.getAccidents = function() {
     this.loopThroughArray(filteredData);
   });
 };
-
-// App.createMarker = function(index, feature){
-//   const latlng = new google.maps.LatLng(feature.lat, feature.lng);
-//
-//   console.log(feature.lat, feature.lng);
-//
-//   var icon = {
-//     url: '/images/main.png',
-//     scaledSize: new google.maps.Size(30,45)
-//   };
-//   const marker = new google.maps.Marker({
-//     position: latlng,
-//     map: App.map,
-//     icon
-//   });
-
-
-
 
 
 App.loopThroughArray = function(data){
@@ -119,17 +92,43 @@ App.loopThroughArray = function(data){
   const markerCluster = new MarkerClusterer(App.map, App.markers, mcOptions);
 };
 
-//icon details
+//************ADD ICONS*************************
 App.addMarkerForAccident = function(feature){
   const latlng = new
   google.maps.LatLng(parseFloat(feature.properties.latitude), parseFloat(feature.properties.longitude));
   const marker = new google.maps.Marker({
     position: latlng,
-    map: App.map
-    //add icon styles details later.
+    map: App.map,
+    icon: '/images/crash-02.png',
+
+
   });
   App.addInfoWindowForAccident(feature, marker);
   return marker;
+
+  // App.createMarker = function(index, feature){
+  //   const latlng = new google.maps.LatLng(feature.lat, feature.lng);
+  //
+  //   console.log(feature.lat, feature.lng);
+  //
+  //   var icon = {
+  //     url: '/images/main.png',
+  //     scaledSize: new google.maps.Size(30,45)
+  //   };
+  //   const marker = new google.maps.Marker({
+  //     position: latlng,
+  //     map: App.map,
+  //     icon
+  //   });
+
+
+
+
+
+
+
+
+
 };
 //add info window for accident
 App.addInfoWindowForAccident = function(feature, marker) {
@@ -229,10 +228,7 @@ App.login = function(e) {
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Login</button>
         </div>
-
         </form>
-
-
         `);
   $('.modal').modal('show');
 };
@@ -244,10 +240,35 @@ App.logout = function(e){
 
 App.homepage = function(){
   this.$main.html(`
-  <p><img src="/images/bike.png"></p>
-    <p>The web app for festival listings and updates<p>
-    `);
-  console.log('You clicked');
+
+<div class="jumbotron jumbotron-fluid">
+<div class="container">
+<h1 class="display-3">Cycle Safe</h1>
+<div class="holder">
+<div id="boxOne" class="box fade-in one">
+<img src= "../images/circles_large-01.png"/>
+</div>
+
+<div id="boxTwo" class="box fade-in two">
+<img src= "../images/circles_large-02.png"/>
+</div>
+
+<div id="boxThree" class="box fade-in three">
+<img src= "../images/circles_large-03.png"/>
+</div>
+
+</div>
+</div>
+<p id="intro" class="lead">Mapping the cycling accident hotspots in London.</p>
+</div>
+</div>
+
+
+
+
+
+
+`);
 };
 
 App.handleForm = function(e){

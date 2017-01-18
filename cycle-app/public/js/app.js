@@ -3,11 +3,6 @@
 var App = App || {};
 var google = google;
 
-// const google = google || {};
-//*******TO CHECK******
-//IF BOTH APP AND GOOGLE MAP ARE OKAY TO BE OBJECTS - WHAT
-//AFFECTS WILL HAPPEN IF SO????
-
 App.init = function () {
   this.apiUrl = 'http://localhost:3000/api';
   this.$main = $('main');
@@ -28,7 +23,6 @@ App.homepage = function () {
   this.$main.html('<p>hello<p>');
 };
 
-//Check the zoom on this later. Eventually try UK wide etc.
 App.createMap = function () {
   console.log('inside createMap');
   var canvas = document.getElementById('canvas');
@@ -53,7 +47,6 @@ App.createMap = function () {
   this.getAccidents();
 };
 
-//check the loop - how to change when user mines deeper for info.
 App.getAccidents = function () {
   var _this = this;
 
@@ -64,22 +57,6 @@ App.getAccidents = function () {
     _this.loopThroughArray(filteredData);
   });
 };
-
-// App.createMarker = function(index, feature){
-//   const latlng = new google.maps.LatLng(feature.lat, feature.lng);
-//
-//   console.log(feature.lat, feature.lng);
-//
-//   var icon = {
-//     url: '/images/main.png',
-//     scaledSize: new google.maps.Size(30,45)
-//   };
-//   const marker = new google.maps.Marker({
-//     position: latlng,
-//     map: App.map,
-//     icon
-//   });
-
 
 App.loopThroughArray = function (data) {
   console.log(data);
@@ -114,16 +91,33 @@ App.loopThroughArray = function (data) {
   var markerCluster = new MarkerClusterer(App.map, App.markers, mcOptions);
 };
 
-//icon details
+//************ADD ICONS*************************
 App.addMarkerForAccident = function (feature) {
   var latlng = new google.maps.LatLng(parseFloat(feature.properties.latitude), parseFloat(feature.properties.longitude));
   var marker = new google.maps.Marker({
     position: latlng,
-    map: App.map
-    //add icon styles details later.
+    map: App.map,
+    icon: '/images/crash-02.png'
+
   });
   App.addInfoWindowForAccident(feature, marker);
   return marker;
+
+  // App.createMarker = function(index, feature){
+  //   const latlng = new google.maps.LatLng(feature.lat, feature.lng);
+  //
+  //   console.log(feature.lat, feature.lng);
+  //
+  //   var icon = {
+  //     url: '/images/main.png',
+  //     scaledSize: new google.maps.Size(30,45)
+  //   };
+  //   const marker = new google.maps.Marker({
+  //     position: latlng,
+  //     map: App.map,
+  //     icon
+  //   });
+
 };
 //add info window for accident
 App.addInfoWindowForAccident = function (feature, marker) {
@@ -164,7 +158,7 @@ App.register = function (e) {
 
 App.login = function (e) {
   e.preventDefault();
-  $('.modal-content').html('\n    <form method="post" action="/login">\n      <div class="modal-header">\n        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\n        <h4 class="modal-title">Login</h4>\n      </div>\n      <div class="modal-body">\n\n        <form method="post" action="/login">\n        <div class="form-group">\n        <input class="form-control" type="email" name="email" placeholder="Email">\n        </div>\n        <div class="form-group">\n        <input class="form-control" type="password" name="password" placeholder="Password">\n        </div>\n\n\n        </div>\n        <div class="modal-footer">\n        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>\n        <button type="submit" class="btn btn-primary">Login</button>\n        </div>\n\n        </form>\n\n\n        ');
+  $('.modal-content').html('\n    <form method="post" action="/login">\n      <div class="modal-header">\n        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\n        <h4 class="modal-title">Login</h4>\n      </div>\n      <div class="modal-body">\n\n        <form method="post" action="/login">\n        <div class="form-group">\n        <input class="form-control" type="email" name="email" placeholder="Email">\n        </div>\n        <div class="form-group">\n        <input class="form-control" type="password" name="password" placeholder="Password">\n        </div>\n\n\n        </div>\n        <div class="modal-footer">\n        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>\n        <button type="submit" class="btn btn-primary">Login</button>\n        </div>\n        </form>\n        ');
   $('.modal').modal('show');
 };
 App.logout = function (e) {
@@ -174,8 +168,7 @@ App.logout = function (e) {
 };
 
 App.homepage = function () {
-  this.$main.html('\n  <p><img src="/images/bike.png"></p>\n    <p>The web app for festival listings and updates<p>\n    ');
-  console.log('You clicked');
+  this.$main.html('\n\n<div class="jumbotron jumbotron-fluid">\n<div class="container">\n<h1 class="display-3">Cycle Safe</h1>\n<div class="holder">\n<div id="boxOne" class="box fade-in one">\n<img src= "../images/circles_large-01.png"/>\n</div>\n\n<div id="boxTwo" class="box fade-in two">\n<img src= "../images/circles_large-02.png"/>\n</div>\n\n<div id="boxThree" class="box fade-in three">\n<img src= "../images/circles_large-03.png"/>\n</div>\n\n</div>\n</div>\n<p id="intro" class="lead">Mapping the cycling accident hotspots in London.</p>\n</div>\n</div>\n\n\n\n\n\n\n');
 };
 
 App.handleForm = function (e) {
