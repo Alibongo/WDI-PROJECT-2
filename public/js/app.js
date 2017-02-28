@@ -4,7 +4,8 @@ var App = App || {};
 var google = google;
 
 App.init = function () {
-  this.apiUrl = 'http://localhost:3000/api';
+  // this.apiUrl = 'http://localhost:3000/api';
+  this.apiUrl = window.location.origin + '/api';
   this.$main = $('main');
   $('.register').on('click', this.register.bind(this));
   $('.login').on('click', this.login.bind(this));
@@ -91,7 +92,6 @@ App.loopThroughArray = function (data) {
   var markerCluster = new MarkerClusterer(App.map, App.markers, mcOptions);
 };
 
-//************ADD ICONS*************************
 App.addMarkerForAccident = function (feature) {
   var latlng = new google.maps.LatLng(parseFloat(feature.properties.latitude), parseFloat(feature.properties.longitude));
   var marker = new google.maps.Marker({
@@ -102,22 +102,6 @@ App.addMarkerForAccident = function (feature) {
   });
   App.addInfoWindowForAccident(feature, marker);
   return marker;
-
-  // App.createMarker = function(index, feature){
-  //   const latlng = new google.maps.LatLng(feature.lat, feature.lng);
-  //
-  //   console.log(feature.lat, feature.lng);
-  //
-  //   var icon = {
-  //     url: '/images/main.png',
-  //     scaledSize: new google.maps.Size(30,45)
-  //   };
-  //   const marker = new google.maps.Marker({
-  //     position: latlng,
-  //     map: App.map,
-  //     icon
-  //   });
-
 };
 //add info window for accident
 App.addInfoWindowForAccident = function (feature, marker) {
@@ -128,7 +112,7 @@ App.addInfoWindowForAccident = function (feature, marker) {
 
     _this2.infoWindow = new google.maps.InfoWindow({
       maxWidth: 200,
-      content: '\n    <div class="info-window">\n    <img src= "../images/skull.png"/>\n    <h6><strong>Severity:</strong> ' + feature.properties.severity + '</h6>\n    <p><strong>Time of day:</strong> ' + feature.properties.datetime + '</p>\n    <p><strong>casualties:</strong> ' + feature.properties.casualties + '</p>\n    <p><strong>number of casualties:</strong> ' + feature.properties.Number_of_Casualties + '</p>\n</div>\n    '
+      content: '\n      <div class="info-window">\n      <img src= "../images/skull.png"/>\n      <h6><strong>Severity:</strong> ' + feature.properties.severity + '</h6>\n      <p><strong>Time of day:</strong> ' + feature.properties.datetime + '</p>\n      <p><strong>casualties:</strong> ' + feature.properties.casualties + '</p>\n      <p><strong>number of casualties:</strong> ' + feature.properties.Number_of_Casualties + '</p>\n      </div>\n      '
     });
     _this2.infoWindow.open(_this2.map, marker);
   });
@@ -158,7 +142,7 @@ App.register = function (e) {
 
 App.login = function (e) {
   e.preventDefault();
-  $('.modal-content').html('\n    <form method="post" action="/login">\n      <div class="modal-header">\n        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\n        <h4 class="modal-title">Login</h4>\n      </div>\n      <div class="modal-body">\n\n        <form method="post" action="/login">\n        <div class="form-group">\n        <input class="form-control" type="email" name="email" placeholder="Email">\n        </div>\n        <div class="form-group">\n        <input class="form-control" type="password" name="password" placeholder="Password">\n        </div>\n\n\n        </div>\n        <div class="modal-footer">\n        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>\n        <button type="submit" class="btn btn-primary">Login</button>\n        </div>\n        </form>\n        ');
+  $('.modal-content').html('\n        <form method="post" action="/login">\n        <div class="modal-header">\n        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\n        <h4 class="modal-title">Login</h4>\n        </div>\n        <div class="modal-body">\n\n        <form method="post" action="/login">\n        <div class="form-group">\n        <input class="form-control" type="email" name="email" placeholder="Email">\n        </div>\n        <div class="form-group">\n        <input class="form-control" type="password" name="password" placeholder="Password">\n        </div>\n\n\n        </div>\n        <div class="modal-footer">\n        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>\n        <button type="submit" class="btn btn-primary">Login</button>\n        </div>\n        </form>\n        ');
   $('.modal').modal('show');
 };
 App.logout = function (e) {
@@ -168,7 +152,7 @@ App.logout = function (e) {
 };
 
 App.homepage = function () {
-  this.$main.html('\n\n<div class="jumbotron jumbotron-fluid">\n<div class="container">\n<h1 class="display-3">Cycle Safe</h1>\n<div class="holder">\n<div id="boxOne" class="box fade-in one">\n<img src= "../images/circles_large-01.png"/>\n</div>\n\n<div id="boxTwo" class="box fade-in two">\n<img src= "../images/circles_large-02.png"/>\n</div>\n\n<div id="boxThree" class="box fade-in three">\n<img src= "../images/circles_large-03.png"/>\n</div>\n\n</div>\n</div>\n<p id="intro" class="lead"> Mapping the cycling accident hotspots in London.</p>\n</div>\n</div>\n\n\n\n\n\n\n');
+  this.$main.html('\n\n          <div class="jumbotron jumbotron-fluid">\n\n          <div class="container">\n          <div id="copy">\n          <h1 class="display-3">Cycle Safe</h1>\n            <p id="intro" class="lead"> Mapping the cycling accident hotspots in London.</p>\n          </div>\n\n          <div class="holder">\n          <div id="boxOne" class="box fade-in one">\n          <img src= "../images/circles_large-01.png"/>\n          </div>\n          <div id="boxTwo" class="box fade-in two">\n          <img src= "../images/circles_large-02.png"/>\n          </div>\n          <div id="boxThree" class="box fade-in three">\n          <img src= "../images/circles_large-03.png"/>\n          </div>\n          </div>\n          </div>\n\n          </div>\n          </div>\n\n          ');
 };
 
 App.handleForm = function (e) {

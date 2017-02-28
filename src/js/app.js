@@ -2,7 +2,8 @@ const App = App || {};
 const google = google;
 
 App.init = function() {
-  this.apiUrl = 'http://localhost:3000/api';
+  // this.apiUrl = 'http://localhost:3000/api';
+  this.apiUrl = `${window.location.origin}/api`;
   this.$main  = $('main');
   $('.register').on('click', this.register.bind(this));
   $('.login').on('click', this.login.bind(this));
@@ -69,30 +70,30 @@ App.loopThroughArray = function(data){
     url: '/images/circles-01.png',
     width: 53
   },
-    {
-      height: 56,
-      url: '/images/circles-02.png',
-      width: 56
-    },
-    {
-      height: 66,
-      url: '/images/circles-03.png',
-      width: 66
-    },
-    {
-      height: 78,
-      url: '/images/circles-04.png',
-      width: 78
-    },
-    {
-      height: 90,
-      url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-      width: 90
-    }]}
+  {
+    height: 56,
+    url: '/images/circles-02.png',
+    width: 56
+  },
+  {
+    height: 66,
+    url: '/images/circles-03.png',
+    width: 66
+  },
+  {
+    height: 78,
+    url: '/images/circles-04.png',
+    width: 78
+  },
+  {
+    height: 90,
+    url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+    width: 90
+  }]}
   const markerCluster = new MarkerClusterer(App.map, App.markers, mcOptions);
 };
 
-//************ADD ICONS*************************
+
 App.addMarkerForAccident = function(feature){
   const latlng = new
   google.maps.LatLng(parseFloat(feature.properties.latitude), parseFloat(feature.properties.longitude));
@@ -106,47 +107,24 @@ App.addMarkerForAccident = function(feature){
   App.addInfoWindowForAccident(feature, marker);
   return marker;
 
-  // App.createMarker = function(index, feature){
-  //   const latlng = new google.maps.LatLng(feature.lat, feature.lng);
-  //
-  //   console.log(feature.lat, feature.lng);
-  //
-  //   var icon = {
-  //     url: '/images/main.png',
-  //     scaledSize: new google.maps.Size(30,45)
-  //   };
-  //   const marker = new google.maps.Marker({
-  //     position: latlng,
-  //     map: App.map,
-  //     icon
-  //   });
-
-
-
-
-
-
-
-
-
 };
 //add info window for accident
 App.addInfoWindowForAccident = function(feature, marker) {
   google.maps.event.addListener(marker, 'click', () =>{
     if (typeof this.infoWindow !== 'undefined')
-      this. infoWindow.close();
+    this. infoWindow.close();
 
     this.infoWindow = new google.maps.InfoWindow({
       maxWidth: 200,
       content: `
-    <div class="info-window">
-    <img src= "../images/skull.png"/>
-    <h6><strong>Severity:</strong> ${ feature.properties.severity}</h6>
-    <p><strong>Time of day:</strong> ${ feature.properties.datetime}</p>
-    <p><strong>casualties:</strong> ${ feature.properties.casualties}</p>
-    <p><strong>number of casualties:</strong> ${ feature.properties.Number_of_Casualties}</p>
-</div>
-    `
+      <div class="info-window">
+      <img src= "../images/skull.png"/>
+      <h6><strong>Severity:</strong> ${ feature.properties.severity}</h6>
+      <p><strong>Time of day:</strong> ${ feature.properties.datetime}</p>
+      <p><strong>casualties:</strong> ${ feature.properties.casualties}</p>
+      <p><strong>number of casualties:</strong> ${ feature.properties.Number_of_Casualties}</p>
+      </div>
+      `
     });
     this.infoWindow.open(this.map, marker);
   });
@@ -159,19 +137,19 @@ App.loggedInState = function(){
   this.$main.html(`
     <div id="canvas"></div>
     `);
-  console.log('this', this);
-  this.createMap();
-};
-App.loggedOutState = function(){
-  $('.loggedIn').hide();
-  $('.loggedOut').show();
-  this.homepage();
-};
+    console.log('this', this);
+    this.createMap();
+  };
+  App.loggedOutState = function(){
+    $('.loggedIn').hide();
+    $('.loggedOut').show();
+    this.homepage();
+  };
 
-App.register = function(e) {
-  if (e) e.preventDefault();
+  App.register = function(e) {
+    if (e) e.preventDefault();
 
-  $('.modal-content').html(`
+    $('.modal-content').html(`
       <form method="post" action="/register">
       <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -200,19 +178,19 @@ App.register = function(e) {
       </div>
       </form>`);
 
-  $('.modal').modal('show');
-};
+      $('.modal').modal('show');
+    };
 
 
-App.login = function(e) {
-  e.preventDefault();
-  $('.modal-content').html(`
-    <form method="post" action="/login">
-      <div class="modal-header">
+    App.login = function(e) {
+      e.preventDefault();
+      $('.modal-content').html(`
+        <form method="post" action="/login">
+        <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Login</h4>
-      </div>
-      <div class="modal-body">
+        </div>
+        <div class="modal-body">
 
         <form method="post" action="/login">
         <div class="form-group">
@@ -230,82 +208,79 @@ App.login = function(e) {
         </div>
         </form>
         `);
-  $('.modal').modal('show');
-};
-App.logout = function(e){
-  e.preventDefault();
-  this.removeToken();
-  this.loggedOutState();
-};
+        $('.modal').modal('show');
+      };
+      App.logout = function(e){
+        e.preventDefault();
+        this.removeToken();
+        this.loggedOutState();
+      };
 
-App.homepage = function(){
-  this.$main.html(`
+      App.homepage = function(){
+        this.$main.html(`
 
-<div class="jumbotron jumbotron-fluid">
-<div class="container">
-<h1 class="display-3">Cycle Safe</h1>
-<div class="holder">
-<div id="boxOne" class="box fade-in one">
-<img src= "../images/circles_large-01.png"/>
-</div>
+          <div class="jumbotron jumbotron-fluid">
 
-<div id="boxTwo" class="box fade-in two">
-<img src= "../images/circles_large-02.png"/>
-</div>
+          <div class="container">
+          <div id="copy">
+          <h1 class="display-3">Cycle Safe</h1>
+            <p id="intro" class="lead"> Mapping the cycling accident hotspots in London.</p>
+          </div>
 
-<div id="boxThree" class="box fade-in three">
-<img src= "../images/circles_large-03.png"/>
-</div>
+          <div class="holder">
+          <div id="boxOne" class="box fade-in one">
+          <img src= "../images/circles_large-01.png"/>
+          </div>
+          <div id="boxTwo" class="box fade-in two">
+          <img src= "../images/circles_large-02.png"/>
+          </div>
+          <div id="boxThree" class="box fade-in three">
+          <img src= "../images/circles_large-03.png"/>
+          </div>
+          </div>
+          </div>
 
-</div>
-</div>
-<p id="intro" class="lead"> Mapping the cycling accident hotspots in London.</p>
-</div>
-</div>
+          </div>
+          </div>
 
+          `);
+        };
 
-
-
-
-
-`);
-};
-
-App.handleForm = function(e){
-  $('.modal').modal('hide');
-  console.log('submitted');
-  e.preventDefault();
-  const url    = `${App.apiUrl}${$(this).attr('action')}`;
-  const method = $(this).attr('method');
-  const data   = $(this).serialize();
-  return App.ajaxRequest(url, method, data, data => {
-    if (data.token) App.setToken(data.token);
-    console.log('app.loggedInState should run');
-    App.loggedInState();
-  });
-};
-App.ajaxRequest = function(url, method, data, callback){
-  return $.ajax({
-    url,
-    method,
-    data,
-    beforeSend: this.setRequestHeader.bind(this)
-  })
-    .done(callback)
-     .fail(data => {
-       console.log(data);
-     });
-};
-App.setRequestHeader = function(xhr) {
-  return xhr.setRequestHeader('Authorization', `Bearer ${this.getToken()}`);
-};
-App.setToken = function(token){
-  return window.localStorage.setItem('token', token);
-};
-App.getToken = function(){
-  return window.localStorage.getItem('token');
-};
-App.removeToken = function(){
-  return window.localStorage.clear();
-};
-$(App.init.bind(App));
+        App.handleForm = function(e){
+          $('.modal').modal('hide');
+          console.log('submitted');
+          e.preventDefault();
+          const url    = `${App.apiUrl}${$(this).attr('action')}`;
+          const method = $(this).attr('method');
+          const data   = $(this).serialize();
+          return App.ajaxRequest(url, method, data, data => {
+            if (data.token) App.setToken(data.token);
+            console.log('app.loggedInState should run');
+            App.loggedInState();
+          });
+        };
+        App.ajaxRequest = function(url, method, data, callback){
+          return $.ajax({
+            url,
+            method,
+            data,
+            beforeSend: this.setRequestHeader.bind(this)
+          })
+          .done(callback)
+          .fail(data => {
+            console.log(data);
+          });
+        };
+        App.setRequestHeader = function(xhr) {
+          return xhr.setRequestHeader('Authorization', `Bearer ${this.getToken()}`);
+        };
+        App.setToken = function(token){
+          return window.localStorage.setItem('token', token);
+        };
+        App.getToken = function(){
+          return window.localStorage.getItem('token');
+        };
+        App.removeToken = function(){
+          return window.localStorage.clear();
+        };
+        $(App.init.bind(App));
