@@ -45,15 +45,21 @@ App.createMap = function () {
 
   };
   App.map = new google.maps.Map(canvas, mapOptions);
-  this.getAccidents();
+
+  google.maps.event.addListener(App.map, 'idle', function () {
+    App.getAccidents(App.map.getBounds(), App.map.getZoom());
+  });
 };
 
-App.getAccidents = function () {
+App.getAccidents = function (bounds, zoom) {
   var _this = this;
 
-  $.get('https://api.cyclestreets.net/v2/collisions.locations?bbox=-0.5103,51.2868,0.3340,51.6923&casualtiesinclude=cyclist&limit=3&datetime=friendly&jitter=1&zoom=17&key=1a427e08203905dd').done(function (data) {
+  bounds = [bounds.getSouthWest().lng().toFixed(8), bounds.getSouthWest().lat().toFixed(8), bounds.getNorthEast().lng().toFixed(8), bounds.getNorthEast().lat().toFixed(8)].join(',');
+
+  $.get('https://api.cyclestreets.net/v2/collisions.locations?bbox=' + bounds + '&casualtiesinclude=cyclist&limit=400&datetime=friendly&jitter=1&zoom=' + zoom + '&key=1a427e08203905dd').done(function (data) {
     var filteredData = data.features.filter(function (accident) {
-      return accident.properties.severity === 'serious' && 'fatal';
+      return ['serious', 'fatal'].includes(accident.properties.severity);
+      // return accident.properties.severity === 'serious' && accident.properties.severity === 'fatal';
     });
     _this.loopThroughArray(filteredData);
   });
