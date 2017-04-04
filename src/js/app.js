@@ -126,11 +126,27 @@ App.addInfoWindowForAccident = function(feature, marker) {
     if (typeof this.infoWindow !== 'undefined')
     this. infoWindow.close();
 
+// image var
+// if severity is serious - show serious.png
+// else, show fatal
+
+
+var image = 'severity';
+if (feature.properties.severity === 'fatal') {
+ image = 'skull'
+} else {
+ image = 'serious'
+};
+
+
+
+
+
     this.infoWindow = new google.maps.InfoWindow({
       maxWidth: 200,
       content: `
       <div class="info-window">
-      <img src= "../images/skull.png"/>
+      <img src= "../images/${ image}.png"/>
       <h6><strong>Severity:</strong> ${ feature.properties.severity}</h6>
       <p><strong>Time of day:</strong> ${ feature.properties.datetime}</p>
       <p><strong>casualties:</strong> ${ feature.properties.casualties}</p>

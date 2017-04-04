@@ -116,9 +116,21 @@ App.addInfoWindowForAccident = function (feature, marker) {
   google.maps.event.addListener(marker, 'click', function () {
     if (typeof _this2.infoWindow !== 'undefined') _this2.infoWindow.close();
 
+    // image var
+    // if severity is serious - show serious.png
+    // else, show fatal
+
+
+    var image = 'severity';
+    if (feature.properties.severity === 'fatal') {
+      image = 'skull';
+    } else {
+      image = 'serious';
+    };
+
     _this2.infoWindow = new google.maps.InfoWindow({
       maxWidth: 200,
-      content: '\n      <div class="info-window">\n      <img src= "../images/skull.png"/>\n      <h6><strong>Severity:</strong> ' + feature.properties.severity + '</h6>\n      <p><strong>Time of day:</strong> ' + feature.properties.datetime + '</p>\n      <p><strong>casualties:</strong> ' + feature.properties.casualties + '</p>\n      <p><strong>number of casualties:</strong> ' + feature.properties.Number_of_Casualties + '</p>\n      </div>\n      '
+      content: '\n      <div class="info-window">\n      <img src= "../images/' + image + '.png"/>\n      <h6><strong>Severity:</strong> ' + feature.properties.severity + '</h6>\n      <p><strong>Time of day:</strong> ' + feature.properties.datetime + '</p>\n      <p><strong>casualties:</strong> ' + feature.properties.casualties + '</p>\n      <p><strong>number of casualties:</strong> ' + feature.properties.Number_of_Casualties + '</p>\n      </div>\n      '
     });
     _this2.infoWindow.open(_this2.map, marker);
   });
