@@ -126,21 +126,12 @@ App.addInfoWindowForAccident = function(feature, marker) {
     if (typeof this.infoWindow !== 'undefined')
     this. infoWindow.close();
 
-// image var
-// if severity is serious - show serious.png
-// else, show fatal
-
-
-var image = 'severity';
-if (feature.properties.severity === 'fatal') {
- image = 'skull'
-} else {
- image = 'serious'
-};
-
-
-
-
+    var image;
+    if (feature.properties.severity === 'fatal') {
+     image = 'skull'
+    } else {
+     image = 'serious'
+    }
 
     this.infoWindow = new google.maps.InfoWindow({
       maxWidth: 200,
@@ -252,7 +243,7 @@ App.loggedInState = function(){
           <div class="container">
           <div id="copy">
           <h1 class="display-3">Cycle Safe</h1>
-            <p id="intro" class="lead"> Mapping the cycling accident hotspots in London.</p>
+            <p id="intro" class="lead"> Mapping the cycling accident hotspots in UK</p>
           </div>
 
           <div class="holder">

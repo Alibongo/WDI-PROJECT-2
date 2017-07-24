@@ -116,17 +116,12 @@ App.addInfoWindowForAccident = function (feature, marker) {
   google.maps.event.addListener(marker, 'click', function () {
     if (typeof _this2.infoWindow !== 'undefined') _this2.infoWindow.close();
 
-    // image var
-    // if severity is serious - show serious.png
-    // else, show fatal
-
-
-    var image = 'severity';
+    var image;
     if (feature.properties.severity === 'fatal') {
       image = 'skull';
     } else {
       image = 'serious';
-    };
+    }
 
     _this2.infoWindow = new google.maps.InfoWindow({
       maxWidth: 200,
@@ -170,7 +165,7 @@ App.logout = function (e) {
 };
 
 App.homepage = function () {
-  this.$main.html('\n\n          <div class="jumbotron jumbotron-fluid">\n\n          <div class="container">\n          <div id="copy">\n          <h1 class="display-3">Cycle Safe</h1>\n            <p id="intro" class="lead"> Mapping the cycling accident hotspots in London.</p>\n          </div>\n\n          <div class="holder">\n          <div id="boxOne" class="box fade-in one">\n          <img src= "../images/circles_large-01.png"/>\n          </div>\n          <div id="boxTwo" class="box fade-in two">\n          <img src= "../images/circles_large-02.png"/>\n          </div>\n          <div id="boxThree" class="box fade-in three">\n          <img src= "../images/circles_large-03.png"/>\n          </div>\n          </div>\n          </div>\n\n          </div>\n          </div>\n\n          ');
+  this.$main.html('\n\n          <div class="jumbotron jumbotron-fluid">\n\n          <div class="container">\n          <div id="copy">\n          <h1 class="display-3">Cycle Safe</h1>\n            <p id="intro" class="lead"> Mapping the cycling accident hotspots in UK</p>\n          </div>\n\n          <div class="holder">\n          <div id="boxOne" class="box fade-in one">\n          <img src= "../images/circles_large-01.png"/>\n          </div>\n          <div id="boxTwo" class="box fade-in two">\n          <img src= "../images/circles_large-02.png"/>\n          </div>\n          <div id="boxThree" class="box fade-in three">\n          <img src= "../images/circles_large-03.png"/>\n          </div>\n          </div>\n          </div>\n\n          </div>\n          </div>\n\n          ');
 };
 
 App.handleForm = function (e) {

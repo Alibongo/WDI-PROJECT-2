@@ -22,7 +22,7 @@ font-size: 1.25rem;
 .holder {
 position: fixed;
 top: 20%;
-left: 30%;
+left: 34%;
 // margin-top: -6px;
 }
 
@@ -87,13 +87,12 @@ box-sizing: border-box;
 }
 
 .display-3{
-
-position:relative; top: 100%; left:auto;
-float:left;
+position:relative;
+margin-top: 200px;
+left:auto;
 text-align: center;
   z-index: 1;
 }
-
 
 .gm-style {
     font-weight: 300;
@@ -101,6 +100,7 @@ text-align: center;
     overflow: hidden;
     width: 200px;
 }
+
   #intro{
     position:relative; top: 100%; left: 30%;
     float:left;
